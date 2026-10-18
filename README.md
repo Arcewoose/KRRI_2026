@@ -1,6 +1,6 @@
-# 차량 감속기 고장 진단 AI 모델 및 무선 통신 통합 시스템
+# 차량 감속기 고장 진단 AI 모델 구축 연구
 
-본 저장소는 철도 및 특수목적 차량 감속기(Gearbox/Reducer)의 실시간 결함 진단을 위한 **2단계 계층형 멀티모달 AI 진단 파이프라인(Multimodal Realtime Inference Pipeline)**과 **저지연 무선 전송 시스템(BLE 5.0 GATT Telemetry)**의 통합 구현체입니다.
+본 저장소는 철도 및 특수목적 차량 감속기(Gearbox/Reducer)의 실시간 결함 진단을 위한 2단계 계층형 멀티모달 AI 진단 파이프라인(Multimodal Realtime Inference Pipeline)과 저지연 무선 전송 시스템(BLE 5.0 GATT Telemetry)의 통합 구현체입니다.
 
 ---
 
