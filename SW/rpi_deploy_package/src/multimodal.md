@@ -130,11 +130,3 @@ $$z_{\text{fused}} = \left[ \hat{z}_{\text{CAN}} \in \mathbb{R}^{16} \;\Vert\; \
 3. **Panel C (Distance Distribution)**: 정상 거리($0.32$)와 결함 거리($1.70$) 간의 초대형 분리도(Cohen's $d = 9.15$) 확인.
 4. **Panel D (40-dim Pattern-Energy Fused Profile)**: $[\hat{z}_{\text{CAN}}(16\text{d}) \,\|\, \hat{z}_{\text{Audio}}(16\text{d}) \,\|\, \text{CosSim}(1\text{d}) \,\|\, d_{\text{latent}}(1\text{d}) \,\|\, e_{\text{physics}}(6\text{d})]$의 정상/결함 패턴 선명 분리.
 
----
-
-## 7. 엔지니어링 최종 결론
-
-1. **단위 구면 정규화의 필수성 입증**: 일반 유클리디안 공간 대비 단위 구면 정렬 시 분리 효과 크기(Cohen's $d$)가 **3.24에서 9.15로 2.82배 급증**하고, 노이즈 외란 시 오탐률이 **68.4%에서 20.5%로 대폭 억제**됨.
-2. **5대 머신러닝 성능 지표**: 5-Fold 교차 검증에서 Latent Cross-Modal Fusion 모델이 **Accuracy 99.37%, F1 99.39%, ROC-AUC 0.9997**를 달성하여 CAN 단독(99.45%) 및 Concat(99.33%) 대비 압도적 우위를 증명함.
-3. **미학습 60kph 일반화 완벽 입증**: 단순 Concat 모델의 미학습 F1 96.51% 대비 **99.45% (AUC 0.9996)**로 미학습 차속에서도 견고함을 입증함.
-4. **실차 배포 패키지**: 학습된 경량 가중치 [dual_autoencoder_latent_w170.pt](../../rpi_deploy_package/models/dual_autoencoder_latent_w170.pt)는 라즈베리 파이 단일 윈도우 추론 기준 $1.2\text{ ms}$ 미만의 초경량 연산 비용을 유지함.
