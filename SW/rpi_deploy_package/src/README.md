@@ -36,9 +36,9 @@ $$z_{\text{fused}} = \left[ \hat{z}_{\text{CAN}} \in \mathbb{R}^{16} \;\Vert\; \
 
 ---
 
-## 2. CAN 2-Step 및 Latent Cross-Modal 융합 모델 종합 벤치마크 및 5대 성능 비교표
+## 2. 융합 모델 종합 벤치마크 및 5대 성능 비교표
 
-### 2.1 RPi Deploy Package 실시간 멀티모달 5대 융합 진단 모델 성능 및 지연시간 검증표 (총 2,382 Windows)
+### 2.1  멀티모달 진단 모델 성능 및 지연시간 검증표 (총 2,382 Windows)
 
 | 멀티모달 융합 모델 아키텍처 (Model Architecture) | Accuracy | Precision | Recall | F1-Score | ROC-AUC | Mean Latency |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -48,7 +48,7 @@ $$z_{\text{fused}} = \left[ \hat{z}_{\text{CAN}} \in \mathbb{R}^{16} \;\Vert\; \
 | **Gated Multi-Modal Unit (GMU) (32d)** | 100.00% | 100.00% | 100.00% | 100.00% | 1.0000 | 0.993 ms |
 | **Latent Cross-Modal Fusion (Pattern-Energy 2-Branch, 40d)** | 99.37% | 99.43% | 99.35% | 99.39% | 0.9997 | 3.402 ms |
 
-### 2.2 0.50초(170샘플) 5-Fold Stratified Cross-Validation 5대 표준 성능 지표
+### 2.2 5-Fold Stratified Cross-Validation 표준 성능 지표
 
 | 융합 및 진단 모델 아키텍처 | 입력 피처 구성 | 정확도 (Accuracy) | 정밀도 (Precision) | 재현율 (Recall) | F1-Score | ROC-AUC |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
@@ -91,7 +91,7 @@ $$z_{\text{fused}} = \left[ \hat{z}_{\text{CAN}} \in \mathbb{R}^{16} \;\Vert\; \
 
 ---
 
-## 5. 오디오 노이즈 외란 주입 시 공간별 진단 신뢰도 방어력
+## 5. 오디오 노이즈 외란 주입 시 공간별 진단 신뢰도 
 
 | 주입 노이즈 수준 ($\sigma$) | 단위 구면 $\mathbb{S}^{15}$ 정상 오탐률 (FPR) | 단위 구면 $\mathbb{S}^{15}$ ROC-AUC | 일반 유클리디안 $\mathbb{R}^{16}$ 정상 오탐률 (FPR) | 일반 유클리디안 $\mathbb{R}^{16}$ ROC-AUC |
 | :--- | :---: | :---: | :---: | :---: |
@@ -103,7 +103,7 @@ $$z_{\text{fused}} = \left[ \hat{z}_{\text{CAN}} \in \mathbb{R}^{16} \;\Vert\; \
 
 ---
 
-## 6. 잠재 공간 분리도(Separation Gap) 극대화의 공학적 효용 및 직관적 비교
+## 6. 잠재 공간 분리도(Separation Gap) 효과
 
 | 평가 항목 (Evaluation Item) | 분리가 불충분할 때 (일반 공간 R^16) | 분리가 극대화되었을 때 (본 단위 구면 S^15) | 실차 환경 기대 효과 (Practical Impact) |
 | :--- | :--- | :--- | :--- |
@@ -112,7 +112,7 @@ $$z_{\text{fused}} = \left[ \hat{z}_{\text{CAN}} \in \mathbb{R}^{16} \;\Vert\; \
 | **외부 음향 소음 방어 (Noise Robustness)** | 우천/터널 소음(Sigma 0.5) 유입 시 정상 잠재 거리 급팽창 | 소음 유입 시에도 정상 거리가 0.6 수준에 머물러 **1.70과 불일치 유지** | 빗소리, 풍절음, 터널 공명음에 의한 오진단/오경보 방어 |
 | **임베디드 엣지 연산 비용 (Edge Deploy)** | 모호한 경계 구분을 위해 무거운 앙상블 딥러닝 필수 | 특징 구분이 명확하여 **단일 경량 트리 분류기로 충분** | 라즈베리 파이에서 **1.2 ms 초저지연 연산**으로 배터리/CPU 절약 |
 
-### 6.1 핵심 동작 원리 직관적 요약
+### 6.1 요약
 1. **기준선 긋기가 쉬워져 오진단이 사라집니다**: 정상은 `0.32`, 결함은 `1.70`으로 거리가 워낙 멀어 중간에 대충 기준선(`1.0`)을 그어도 정상을 결함으로 착각하거나(오탐) 결함을 놓칠(미탐) 일이 없습니다.
 2. **처음 보는 속도에서도 헷갈리지 않습니다 (Unseen Domain)**: 학습하지 않은 새로운 속도(60 kph)나 급경사 도로를 달려도, 정상과 결함의 간격이 넓어 99.45%의 높은 정확도를 유지합니다.
 3. **빗소리나 터널 소음이 들어와도 오탐이 안 납니다 (Noise Resilience)**: 외부 잡음 때문에 정상 신호의 수치가 조금 올라가더라도(`0.32 -> 0.60`), 결함 기준선(`1.70`)까지는 닿지 않아 오경보를 울리지 않습니다.
@@ -120,12 +120,5 @@ $$z_{\text{fused}} = \left[ \hat{z}_{\text{CAN}} \in \mathbb{R}^{16} \;\Vert\; \
 
 ---
 
-## 7. 메커니즘 시각화 분석
 
-![Latent Fusion Mechanism Visualization](../figures/latent_fusion_mechanism_visualization.png)
-
-1. **Panel A (Raw Disparity)**: CAN 휠속($0 \sim 80\text{ kph}$)과 Audio 고주파($1.6\text{k} \sim 6.2\text{k Hz}$) 간의 극단적인 단위/스케일 불일치 입증.
-2. **Panel B (3D Unit Hypersphere Alignment)**: 정상 시 $\hat{z}_{\text{CAN}}$과 $\hat{z}_{\text{Audio}}$가 3D 구면 상에서 일치 정렬되고, 결함 시 명확히 3D 공간 상에서 디커플링(붉은 점선 연결)됨을 확인.
-3. **Panel C (Distance Distribution)**: 정상 거리($0.32$)와 결함 거리($1.70$) 간의 초대형 분리도(Cohen's $d = 9.15$) 확인.
-4. **Panel D (40-dim Pattern-Energy Fused Profile)**: $[\hat{z}_{\text{CAN}}(16\text{d}) \,\|\, \hat{z}_{\text{Audio}}(16\text{d}) \,\|\, \text{CosSim}(1\text{d}) \,\|\, d_{\text{latent}}(1\text{d}) \,\|\, e_{\text{physics}}(6\text{d})]$의 정상/결함 패턴 선명 분리.
 
