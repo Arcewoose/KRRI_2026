@@ -127,7 +127,7 @@ python ble_receiver.py
 
 ---
 
-## 6. 실시간 출력 화면
+## 4. 실시간 출력 화면
 
 ### 송신기 콘솔 출력 ([main.py](main.py))
 ```text
