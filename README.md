@@ -103,33 +103,9 @@
 
 ---
 
-## 3. 164바이트 바이너리 패킷 규격 (Little-Endian)
+## 3. 실행 방법
 
-패킷은 1바이트 헤더, 1바이트 상태 코드, 20개의 50ms 서브윈도우별 DSP 연산 결과(각 8바이트), 2바이트 시퀀스 번호/패딩으로 구성됩니다.
-
-| 오프셋 (Byte) | 필드명 | 데이터 타입 | 설명 |
-| :---: | :---: | :---: | :--- |
-| **0** | **Header** | `uint8` (`0xAA`) | 패킷 시작 식별자 매직 넘버 |
-| **1** | **Status** | `uint8` | `0`: 정상 (NORMAL), `1`: 고장/이상 (ABNORMAL) |
-| **2 ~ 9** | **Subwindow #01** | `float32[2]` (`<ff`) | 0~50ms 구간 `[RMSE, Bandwidth(Hz)]` |
-| **10 ~ 17** | **Subwindow #02** | `float32[2]` (`<ff`) | 50~100ms 구간 `[RMSE, Bandwidth(Hz)]` |
-| **...** | **Subwindow #03 ~ #19** | `float32[2]` (`<ff`) | 50ms 단위 연속 서브구간 DSP 수치 |
-| **154 ~ 161** | **Subwindow #20** | `float32[2]` (`<ff`) | 950~1000ms 구간 `[RMSE, Bandwidth(Hz)]` |
-| **162 ~ 163** | **Seq / Padding** | `uint16` (`<H`) | 시퀀스 번호 및 패딩 |
-
----
-
-## 4. 통신 규격 및 UUID
-
-* **Service UUID**: `20260001-cafe-1234-5678-0123456789ab`
-* **Characteristic UUID**: `20260002-cafe-1234-5678-0123456789ab` (속성: `read`, `notify`)
-* **타겟 송신기 MAC**: `2C:CF:67:63:37:AA`
-
----
-
-## 5. 실행 방법
-
-### (1) 송신기 실행 (Raspberry Pi 5)
+### (1) 송신기 실행 
 
 ```bash
 cd /home/pi/Documents/KRRI_2026
