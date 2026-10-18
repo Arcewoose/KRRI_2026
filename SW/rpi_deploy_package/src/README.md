@@ -1,5 +1,4 @@
-# CAN-Audio Latent Cross-Modal Fusion 고장 진단 종합 기술 및 성능 보고서
-(CAN-Audio Latent Cross-Modal Fusion Diagnostic Comprehensive Technical Report)
+# CAN-Audio 멀티모달 모델 구축 연구
 
 ---
 
